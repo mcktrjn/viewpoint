@@ -1,0 +1,322 @@
+@import "../../variables.scss";
+
+.nav {
+  display: flex;
+  gap: 40px;
+  padding: 16px 0;
+
+  .logotype {
+    $firstLetterWidth: 8.7578125px;
+
+    position: relative;
+    margin-left: calc($firstLetterWidth + 2px);
+    padding: 4px 0;
+    font-size: $h6;
+    line-height: calc($h6 + 0.5rem);
+    color: $primary10;
+    user-select: none;
+
+    .firstLetter {
+      position: absolute;
+      left: calc(0px - $firstLetterWidth - 2px);
+      transform: translateY(0.5px) rotate(-90deg);
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      a {
+        line-height: 1rem;
+        color: $primary10;
+      }
+    }
+  }
+
+  .list {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+
+    .listItem {
+      flex-shrink: 0;
+
+      .link {
+        display: flex;
+        gap: 4px;
+        padding: 8px 0;
+
+        &.active {
+          color: $primary40;
+        }
+      }
+
+      .nestedList {
+        position: absolute;
+        z-index: 2;
+        display: none;
+        border: 1px solid $neutral95;
+        background-color: $white;
+
+        .nestedListItem {
+          .nestedLink {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 0 16px;
+            border-bottom: 1px solid $neutral95;
+            padding: 16px 0;
+
+            .nestedText {
+              display: flex;
+              gap: 8px;
+            }
+          }
+
+          &:last-child {
+            .nestedLink {
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .link {
+          .icon {
+            transform: rotate(180deg);
+          }
+        }
+
+        .nestedList {
+          display: block;
+        }
+      }
+
+      &.languageSwitch {
+        margin-left: auto;
+
+        .wrapper {
+          display: flex;
+          gap: 16px;
+          cursor: pointer;
+
+          .text {
+            display: flex;
+            gap: 8px;
+            padding: 8px 0;
+            line-height: 1rem;
+
+            .chip {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &.border {
+        border-right: 1px solid $neutral95;
+      }
+
+      &.downloadButton {
+        .button {
+          all: unset;
+          box-sizing: border-box;
+          border-radius: 16px;
+          padding: 8px 16px;
+          min-width: 48px;
+          min-height: 32px;
+          background-color: $primary40;
+          font-size: 0.75rem;
+          font-weight: 500;
+          line-height: 1rem;
+          color: $white;
+          cursor: pointer;
+
+          &:disabled {
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    gap: 24px;
+  }
+}
+
+// fixes styles in installed app
+@media (min-width: 769px) {
+  .nav {
+    .list {
+      height: 32px !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    justify-content: space-between;
+    padding: 12px 0;
+
+    .logotype {
+      padding: 8px 0;
+    }
+
+    .list {
+      position: fixed;
+      top: -1px;
+      right: 100%;
+      flex-direction: column;
+      gap: 0;
+      margin-top: $headerHeight;
+      max-width: 50%;
+      min-width: $minWidth;
+      background-color: $white;
+      overflow: auto;
+      transition: height 0.25s 0.75s, transform 0.5s;
+
+      &::after {
+        content: "";
+        height: 1px;
+        background-color: $primary40;
+      }
+
+      .listItem {
+        margin-left: max(24px, env(safe-area-inset-left));
+        margin-right: 24px;
+
+        .link {
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          border-bottom: 1px solid $neutral95;
+          padding: 16px 0;
+          font-family: "Playfair Display", serif;
+          font-size: $h4;
+          font-weight: 700;
+          line-height: calc($h4 + 0.5rem);
+
+          .icon {
+            color: $neutral90 !important;
+            transform: none !important;
+          }
+        }
+
+        .nestedList {
+          position: static;
+          display: block;
+          border: 0;
+          background-color: transparent;
+
+          .nestedListItem,
+          .nestedListItem:last-child {
+            .nestedLink {
+              gap: 16px;
+              margin: 0;
+              border-bottom: 1px solid $neutral98;
+            }
+          }
+        }
+
+        &.languageSwitch {
+          margin-left: max(24px, env(safe-area-inset-left));
+
+          .wrapper {
+            justify-content: space-between;
+            padding: 8px 0;
+
+            .text {
+              .chip {
+                display: flex;
+              }
+            }
+          }
+        }
+
+        &.border {
+          border-right: 0;
+        }
+
+        &.downloadButton {
+          margin: auto 0 0;
+
+          .button {
+            margin-top: 40px;
+            border-radius: 0;
+            padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+            width: 100%;
+            min-height: 48px;
+            font-size: $body;
+            font-weight: 600;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .hamburger {
+      all: unset;
+      width: 40px;
+      height: 40px;
+      background-color: $primary40;
+      cursor: pointer;
+
+      .meat {
+        position: relative;
+        margin: 0 8px;
+        height: 2px;
+        background-color: $white;
+        transition: background-color 0.1s;
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: $white;
+          transition: transform 0.25s;
+        }
+
+        &::before {
+          top: -6px;
+        }
+
+        &::after {
+          top: 6px;
+        }
+      }
+    }
+
+    &.active {
+      .list {
+        transform: translateX(100%);
+      }
+
+      .hamburger {
+        .meat {
+          background-color: transparent;
+
+          &::before {
+            transform: translateY(6px) rotate(45deg);
+          }
+
+          &::after {
+            transform: translateY(-6px) rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+}

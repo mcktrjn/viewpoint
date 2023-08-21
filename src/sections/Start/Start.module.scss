@@ -1,0 +1,127 @@
+@import "../../variables.scss";
+$patternPositionTop: calc(24px - 1px);
+
+.section {
+  padding-top: 80px;
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+
+    .texts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      width: 50%;
+
+      .opacityTransition {
+        opacity: 0;
+        transition: opacity 0.75s 0.75s;
+      }
+
+      & > p {
+        @extend .opacityTransition;
+        margin-bottom: -16px;
+      }
+
+      .paragraph,
+      .button {
+        @extend .opacityTransition;
+      }
+    }
+
+    .imageAndPattern {
+      width: 50%;
+
+      .wrapper {
+        position: relative;
+        padding: 0 0 $patternPositionTop 24px;
+        width: 0;
+        transition: width 1s;
+
+        .image {
+          display: block;
+          width: 100%;
+          height: 560px;
+          object-fit: cover;
+        }
+
+        .pattern {
+          position: absolute;
+          z-index: -1;
+          bottom: 0;
+          left: 0;
+          width: calc(100% - 24px);
+          height: calc(100% - $patternPositionTop);
+        }
+      }
+    }
+  }
+
+  &.visible {
+    .container {
+      .texts {
+        .opacityTransition {
+          opacity: 1;
+        }
+      }
+
+      .imageAndPattern {
+        .wrapper {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    .container {
+      gap: 40px;
+
+      .imageAndPattern {
+        .wrapper {
+          .image {
+            height: 480px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 40px;
+
+    .container {
+      flex-direction: column;
+      gap: calc(24px + 8px);
+      overflow: hidden;
+
+      .texts {
+        width: 100%;
+      }
+
+      .imageAndPattern {
+        width: 100%;
+
+        .wrapper {
+          padding-left: 0;
+
+          .image {
+            height: 320px;
+          }
+
+          .pattern {
+            left: -24px;
+            width: 768px;
+          }
+        }
+      }
+    }
+  }
+}

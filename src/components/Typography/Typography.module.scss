@@ -1,0 +1,77 @@
+@import "../../variables.scss";
+
+$poppinsMask: linear-gradient(
+  transparent 10%,
+  $black 10%,
+  $black 90%,
+  transparent 90%
+);
+
+$playfairDisplayMask: linear-gradient(transparent 15%, $black 15%);
+
+.wrapper {
+  mask: linear-gradient($black, $black);
+
+  .word {
+    position: relative;
+    top: 89.5px;
+    transition: top 1s;
+  }
+
+  .decoration {
+    mask: $poppinsMask;
+    background-repeat: no-repeat;
+    background-position-y: 100%;
+
+    &-background {
+      @extend .decoration;
+    }
+
+    &-underline {
+      @extend .decoration;
+      background-size: 100% 45%;
+    }
+  }
+}
+
+.visible {
+  .wrapper {
+    .word {
+      top: 0;
+    }
+  }
+}
+
+.family-playfairDisplay {
+  font-family: "Playfair Display", serif;
+
+  .wrapper {
+    mask: $playfairDisplayMask;
+
+    .decoration {
+      mask: $playfairDisplayMask;
+
+      &-underline {
+        background-size: 100% 35%;
+      }
+    }
+  }
+}
+
+.weight {
+  &-400 {
+    font-weight: 400;
+  }
+
+  &-500 {
+    font-weight: 500;
+  }
+
+  &-600 {
+    font-weight: 600;
+  }
+
+  &-700 {
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../variables.scss";
+
+.section {
+  margin-top: 40px;
+  padding-top: 40px;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 64px;
+    column-gap: 24px;
+
+    .texts {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+      text-align: center;
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+
+    .link {
+      width: calc(50% - 24px / 2);
+
+      &:nth-of-type(1) {
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
+}

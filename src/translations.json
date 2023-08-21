@@ -1,0 +1,30 @@
+{
+  "EN": {
+    "nav": {
+      "start": "Start",
+      "about": "About me",
+      "stories": "Stories",
+      "contact": "Contact",
+      "selectLanguage": "Select language",
+      "downloadCV": "Download CV"
+    },
+    "story": {
+      "inThisStory": "In this story"
+    },
+    "workInProgress": "Work in progress"
+  },
+  "PL": {
+    "nav": {
+      "start": "Start",
+      "about": "O mnie",
+      "stories": "Wpisy",
+      "contact": "Kontakt",
+      "selectLanguage": "Wybierz język",
+      "downloadCV": "Pobierz CV"
+    },
+    "story": {
+      "inThisStory": "W tym wpisie"
+    },
+    "workInProgress": "Praca w toku"
+  }
+}

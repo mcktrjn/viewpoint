@@ -1,0 +1,24 @@
+@import "../../variables.scss";
+
+.page {
+  margin-top: $headerHeight;
+
+  .wrapper {
+    section {
+      & > div {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+    }
+
+    &.visible {
+      section {
+        & > div {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.5s, transform 1s;
+        }
+      }
+    }
+  }
+}
