@@ -1,7 +1,8 @@
 import cx from "classnames";
+import { useRef } from "react";
 import { Chip, Icon, Markdown, Typography } from "../../components";
 import { spaces } from "../../constants";
-import { useWindowSize } from "../../hooks";
+import { useElementSize, useWindowSize } from "../../hooks";
 import { Card as Props } from "../../types";
 import styles from "./Card.module.scss";
 
@@ -17,11 +18,17 @@ export const Card: React.FC<Props> = ({
   decorationRange,
   icon,
   paragraph,
+  paragraphLength,
   chips,
 }) => {
   const { windowWidth } = useWindowSize();
   const isSizeSmall = size === "small" || windowWidth <= 768;
+
   const componentClassName = cx(styles.card, styles[`size-${size}`], className);
+  const objectPositionProperty = `${imagePosition[0]}% ${imagePosition[1]}%`;
+
+  const textsRef = useRef<HTMLDivElement>(null);
+  const textsHeight = useElementSize(textsRef, "height");
 
   return (
     <div className={componentClassName}>
@@ -29,9 +36,16 @@ export const Card: React.FC<Props> = ({
         className={styles.image}
         src={imageSrc}
         alt={imageAlt}
-        style={{ objectPosition: `${imagePosition[0]}% ${imagePosition[1]}%` }}
+        style={
+          !isSizeSmall
+            ? {
+                minHeight: textsHeight + 32 * 2,
+                objectPosition: objectPositionProperty,
+              }
+            : { objectPosition: objectPositionProperty }
+        }
       />
-      <div className={styles.texts}>
+      <div className={styles.texts} ref={textsRef}>
         <Typography
           className={styles.authorAndDate}
           variant="p"
@@ -55,7 +69,7 @@ export const Card: React.FC<Props> = ({
         </div>
         <Markdown
           className={styles.paragraph}
-          length={isSizeSmall ? 120 : 240}
+          length={paragraphLength || (isSizeSmall ? 120 : 240)}
           text={paragraph}
         />
         <div className={styles.chips}>

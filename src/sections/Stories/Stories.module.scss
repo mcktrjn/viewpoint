@@ -27,12 +27,39 @@
 
     .link {
       width: calc(50% - 24px / 2);
+      color: $primary10;
 
-      &:nth-of-type(1) {
-        width: 100%;
+      .card {
+        transform: translateY(100px);
       }
 
-      @media (max-width: 768px) {
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          @if $i == 1 {
+            width: 100%;
+          }
+
+          .card {
+            transition: transform 1s ($i - 1) * 0.1s;
+          }
+        }
+      }
+    }
+  }
+
+  &.visible {
+    .container {
+      .card {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    .container {
+      .link {
         width: 100%;
       }
     }

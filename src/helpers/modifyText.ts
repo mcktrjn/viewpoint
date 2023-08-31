@@ -22,14 +22,14 @@ export const modifyText = (text: string, length = 9999) => {
 
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
-    const wordWithoutUnderscores = word.replace(/_/g, "");
+    const wordWithoutSpecialCharacters = word.replace(/[_[]/g, "");
     const wordLastCharacter = word.slice(-1);
     const previousWordLastCharacter = words[i - 1] ? words[i - 1].slice(-1) : "";
     const nextWordLastCharacter = words[i + 1] ? words[i + 1].slice(-1) : "";
 
     if ((modifiedText + word).length <= length) {
       if (
-        ((wordWithoutUnderscores.length <= 2 || testString("[,.!?]", previousWordLastCharacter)) && testString("[^\n#>-]", wordLastCharacter)) ||
+        ((wordWithoutSpecialCharacters.length <= 2 || testString("[.!?]", previousWordLastCharacter)) && testString("[^\n#>-]", wordLastCharacter)) ||
         testString("[.!?]", nextWordLastCharacter)
       ) {
         modifiedText += word + spaces.NBSP;

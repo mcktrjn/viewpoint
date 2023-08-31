@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../Context";
 import { Chip, Icon, Switch } from "../../components";
 import { headerHeight, languages } from "../../constants";
-import { modifyText } from "../../helpers";
+import { modifyText, scrollToSection } from "../../helpers";
 import { useWindowSize } from "../../hooks";
 import { Language } from "../../types";
 import styles from "./Nav.module.scss";
@@ -30,7 +30,6 @@ export const Nav: React.FC<Props> = ({
   } = useContext(Context);
   const { windowWidth, windowHeight } = useWindowSize();
   const { pathname: path, hash } = useLocation();
-  const body = document.body;
 
   const sectionsActivity = sectionsPositions.map((sectionPosition) => {
     return sectionPosition <= headerHeight;
@@ -38,30 +37,23 @@ export const Nav: React.FC<Props> = ({
   const activeSection = sectionsActivity.lastIndexOf(true);
   const [isNavActive, setIsNavActive] = useState(false);
 
-  const scrollToSection = (index: number) => {
-    const bodyPosition = body.getBoundingClientRect().y;
-    // const sectionPosition = sectionsPositions[index]; // TODO: find out why it doesn't work
-    const sectionPosition = sectionsRefs.current[index].getBoundingClientRect().y;
-    const distance = Math.ceil(sectionPosition - bodyPosition);
-    window.scrollTo({ top: distance, behavior: "smooth" });
-  };
-
   useEffect(() => {
     if (hash && !isLoading) {
       const index = structure.sections.findIndex((section) => {
         return section.name === hash.replace("#", "");
       });
-      scrollToSection(index);
+      scrollToSection(sectionsRefs, index);
     }
   }, [isLoading]);
 
   const handleLinkClick = (link: string, index = 0) => {
     if (link !== path) setSectionsPositions([]);
     handlePathChange(link);
-    setTimeout(() => scrollToSection(index));
+    setTimeout(() => scrollToSection(sectionsRefs, index));
     setIsNavActive(false);
   };
 
+  const body = document.body;
   body.classList.toggle("active", isNavActive);
   if (body.classList.length === 0) body.removeAttribute("class");
 

@@ -8,10 +8,22 @@
       "selectLanguage": "Select language",
       "downloadCV": "Download CV"
     },
+    "start": {
+      "greeting": "Hello!",
+      "heading": "My name is Jan Kowalski",
+      "decorationRange": [3, 3],
+      "paragraph": "As a content marketing specialist, I am responsible for creating valuable and engaging content for the communication channels of the brands I work with. \n\n In my free time, I dedicate myself to writing texts that I publish on this site. Here, I share my thoughts and present my __point of view__ on current events.",
+      "button": "Go to stories"
+    },
+    "stories": {
+      "heading": "My stories",
+      "decorationRange": [1, 1],
+      "paragraph": "I write about what I am working on, what is keeping me up at night, what I have lived through, and what I have learned that the rest of you might want to know too. Below are the topics I have covered so far."
+    },
     "story": {
       "inThisStory": "In this story"
     },
-    "workInProgress": "Work in progress"
+    "workInProgress": "Work in progress"
   },
   "PL": {
     "nav": {
@@ -22,9 +34,21 @@
       "selectLanguage": "Wybierz język",
       "downloadCV": "Pobierz CV"
     },
+    "start": {
+      "greeting": "Cześć!",
+      "heading": "Nazywam się Jan Kowalski",
+      "decorationRange": [2, 2],
+      "paragraph": "Jako specjalista ds. content marketingu, jestem odpowiedzialny za tworzenie wartościowych i angażujących treści dla kanałów komunikacji marek, z którymi współpracuję. \n\n W wolnym czasie poświęcam się pisaniu tekstów, które publikuję na tej stronie. W tym miejscu dzielę się swoimi przemyśleniami oraz przedstawiam swój __punkt widzenia__ na temat bieżących wydarzeń.",
+      "button": "Przejdź do wpisów"
+    },
+    "stories": {
+      "heading": "Moje wpisy",
+      "decorationRange": [1, 1],
+      "paragraph": "Piszę o tym, nad czym pracuję, co nie daje mi spać w nocy, co przeżyłem oraz czego się nauczyłem, a co reszta z was także może chcieć wiedzieć. Poniżej znajdują się tematy, które do tej pory poruszyłem."
+    },
     "story": {
       "inThisStory": "W tym wpisie"
     },
-    "workInProgress": "Praca w toku"
+    "workInProgress": "Praca w toku"
   }
 }

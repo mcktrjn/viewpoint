@@ -1,5 +1,6 @@
 import cx from "classnames";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../../Context";
 import {
   Button,
@@ -9,11 +10,11 @@ import {
   Section,
   Typography,
 } from "../../components";
-import { heading, imageAlt, imageSrc, paragraph } from "../../constants";
+import { scrollToSection } from "../../helpers";
 import styles from "./Start.module.scss";
 
 export const Start = () => {
-  const { sectionsVisibility } = useContext(Context);
+  const { sectionsRefs, sectionsVisibility, texts } = useContext(Context);
 
   // const componentClassName = cx(styles.section, {
   //   [styles.visible]: sectionsVisibility[0],
@@ -28,29 +29,36 @@ export const Start = () => {
       <Container className={styles.container}>
         <div className={styles.texts}>
           <Typography
+            className={styles.greeting}
             variant="p"
             weight={400}
             color="primary40"
-            text="Lorem ipsum"
+            text={texts.start.greeting}
           />
           <Typography
             isVisible={sectionsVisibility[0]}
             variant="h1"
             isFamilyPlayfairDisplay
             weight={600}
-            decorationRange={[3, 4]}
-            text={heading}
+            decorationRange={texts.start.decorationRange}
+            text={texts.start.heading}
           />
-          <Markdown
-            className={styles.paragraph}
-            length={240}
-            text={paragraph}
-          />
-          <Button className={styles.button} text="Lorem ipsum" />
+          <Markdown className={styles.paragraph} text={texts.start.paragraph} />
+          <Link to="/#stories">
+            <Button
+              className={styles.button}
+              text={texts.start.button}
+              onClick={() => scrollToSection(sectionsRefs, 2)}
+            />
+          </Link>
         </div>
         <div className={styles.imageAndPattern}>
           <div className={styles.wrapper}>
-            <img className={styles.image} src={imageSrc} alt={imageAlt} />
+            <img
+              className={styles.image}
+              src="https://storage.googleapis.com/fir-viewpoint.appspot.com/me.jpg"
+              alt="Photo by Jakob Owens on Unsplash"
+            />
             <Pattern className={styles.pattern} />
           </div>
         </div>

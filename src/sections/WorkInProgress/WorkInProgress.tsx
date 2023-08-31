@@ -19,7 +19,7 @@ export const WorkInProgress: React.FC<Props> = ({ index }) => {
           weight={600}
           decorationColor="primary40"
           decorationTextColor="neutral99"
-          decorationRange={[0, 1]}
+          decorationRange={[0, 2]}
           text={texts.workInProgress}
         />
       </Container>

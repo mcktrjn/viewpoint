@@ -10,6 +10,7 @@ export type Card = {
   decorationRange?: number[];
   icon?: Symbol;
   paragraph: string;
+  paragraphLength?: number;
   chips: string[];
 };
 

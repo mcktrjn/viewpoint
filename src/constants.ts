@@ -35,9 +35,3 @@ export const symbols: Record<Symbol, string> = {
 };
 
 export const headerHeight = 65;
-
-// TODO: remove what's below
-export const imageSrc = `https://storage.googleapis.com/fir-viewpoint.appspot.com/hibiscus-and-lemon.jpg`;
-export const imageAlt = `Hibiscus and lemon`;
-export const heading = `Lorem ipsum dolor sit amet`;
-export const paragraph = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;

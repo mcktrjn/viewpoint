@@ -46,6 +46,18 @@
     }
   }
 
+  h5 {
+    strong {
+      padding: 0 calc(4.296875px / 2);
+    }
+  }
+
+  h6 {
+    strong {
+      padding: 0 calc(3.8203125px / 2);
+    }
+  }
+
   p {
     margin: 16px 0;
 
@@ -108,7 +120,6 @@
     display: block;
     margin: 32px 0;
     width: 100%;
-    border: 1px solid $neutral95;
   }
 
   h1,

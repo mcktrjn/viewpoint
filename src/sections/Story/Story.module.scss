@@ -10,7 +10,78 @@ $gap: 64px;
     gap: $gap;
 
     .text {
+      // margin-bottom: 64px;
       width: calc(100% - 240px - $gap / 2);
+
+      // TODO: fix this
+      & {
+        & > p:last-of-type {
+          margin-bottom: 32px;
+        }
+
+        blockquote {
+          @mixin color($hue) {
+            $color10: hsl($hue, 100%, 10%);
+            $color50: hsl($hue, 100%, 50%);
+            $color90: hsl($hue, 100%, 90%);
+            $color95: hsl($hue, 100%, 95%);
+
+            border-color: $color90;
+            background-color: $color95;
+
+            &::before {
+              background-color: $color50;
+            }
+
+            p {
+              position: relative;
+              margin-left: calc(1.25rem + 20px);
+              color: $color10;
+
+              &::before {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: calc(0px - 1.25rem - 20px);
+                font-family: "Material Icons";
+                font-size: 1.25rem;
+                color: $color50;
+              }
+
+              strong {
+                color: $color10;
+              }
+
+              a {
+                color: $color50;
+              }
+            }
+          }
+
+          &:first-child {
+            @include color(0);
+
+            p::before {
+              content: "error";
+            }
+          }
+
+          &:last-child {
+            @include color(40);
+
+            p::before {
+              content: "warning";
+            }
+          }
+        }
+      }
+
+      img {
+        height: 100%;
+        max-height: calc(900px / 16 * 9);
+        object-fit: cover;
+        aspect-ratio: 4 / 3;
+      }
     }
   }
 }

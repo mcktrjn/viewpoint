@@ -1,7 +1,7 @@
 import cx from "classnames";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { colors, spaces } from "../../constants";
-import { useWindowSize } from "../../hooks";
+import { useElementSize } from "../../hooks";
 import { Color } from "../../types";
 import styles from "./Typography.module.scss";
 
@@ -32,7 +32,6 @@ export const Typography: React.FC<Props> = ({
   decorationRange,
   text,
 }) => {
-  const { windowWidth } = useWindowSize();
   const Tag = variant;
   const componentClassName = cx(
     {
@@ -55,13 +54,7 @@ export const Typography: React.FC<Props> = ({
   };
 
   const spaceRef = useRef<HTMLSpanElement>(null);
-  const [spaceWidth, setSpaceWidth] = useState(0);
-
-  useEffect(() => {
-    if (spaceRef.current) {
-      setSpaceWidth(spaceRef.current.getBoundingClientRect().width);
-    }
-  }, [windowWidth]);
+  const spaceWidth = useElementSize(spaceRef, "width");
 
   return (
     <Tag

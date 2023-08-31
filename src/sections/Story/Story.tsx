@@ -38,6 +38,7 @@ export const Story: React.FC<Props & { text: string }> = ({
           heading={heading}
           decorationRange={decorationRange}
           paragraph={paragraph}
+          paragraphLength={9999}
           chips={chips}
         />
         <Markdown className={styles.text} text={text} />
@@ -54,7 +55,7 @@ export const Story: React.FC<Props & { text: string }> = ({
             weight={600}
             decorationColor="primary40"
             decorationTextColor="neutral99"
-            decorationRange={[0, 1]}
+            decorationRange={[0, 2]}
             text={texts.workInProgress}
           />
         </div>

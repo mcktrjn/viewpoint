@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../Context";
@@ -9,13 +10,30 @@ import {
   Section,
   Typography,
 } from "../../components";
-import { heading, paragraph } from "../../constants";
 import { Card as Props } from "../../types";
 import styles from "./Stories.module.scss";
 
 export const Stories = () => {
-  const { structure, setSectionsPositions, sectionsVisibility } = useContext(Context); // prettier-ignore
+  const { structure, setSectionsPositions, sectionsVisibility, texts } = useContext(Context); // prettier-ignore
   const { pathname: path } = useLocation();
+
+  type Subpage = {
+    sections: {
+      element: React.ReactElement;
+    }[];
+  };
+
+  const subpages = structure.sections[2].subpages;
+  const getProps = (subpage: Subpage) => {
+    return subpage.sections[0].element.props;
+  };
+
+  let chips: string[] = [];
+  subpages?.forEach((subpage) => {
+    getProps(subpage).chips.forEach((chip: string) => {
+      if (!chips.includes(chip) && chip.length > 2) chips.push(chip);
+    });
+  });
 
   const handleLinkClick = (link: string) => {
     if (link !== path) setSectionsPositions([]);
@@ -23,7 +41,11 @@ export const Stories = () => {
   };
 
   return (
-    <Section className={styles.section}>
+    <Section
+      className={cx(styles.section, {
+        [styles.visible]: sectionsVisibility[2],
+      })}
+    >
       <Container className={styles.container} size="small">
         <div className={styles.texts}>
           <Typography
@@ -32,17 +54,20 @@ export const Stories = () => {
             isFamilyPlayfairDisplay
             weight={600}
             decoration="underline"
-            decorationRange={[3, 4]}
-            text={heading}
+            decorationRange={texts.stories.decorationRange}
+            text={texts.stories.heading}
           />
-          <Markdown length={240} text={paragraph} />
-          <div className={styles.chips}>
-            <Chip size="large" text="Consectetur" />
-            <Chip size="large" text="Adipiscing" />
-          </div>
+          <Markdown text={texts.stories.paragraph} />
+          {chips.length !== 0 && (
+            <div className={styles.chips}>
+              {chips.sort().map((chip: string, index: number) => (
+                <Chip key={index} size="large" text={chip} />
+              ))}
+            </div>
+          )}
         </div>
 
-        {structure.sections[2].subpages?.map((subpage, index) => {
+        {subpages?.map((subpage, index) => {
           const {
             imageSrc,
             imageAlt,
@@ -53,7 +78,7 @@ export const Stories = () => {
             decorationRange,
             paragraph,
             chips,
-          } = subpage.sections[0].element.props as Props;
+          } = getProps(subpage) as Props;
 
           return (
             <Link
@@ -63,7 +88,7 @@ export const Stories = () => {
               onClick={() => handleLinkClick(subpage.path)}
             >
               <Card
-                className={index === 0 ? "card" : undefined}
+                className={cx(styles.card, index === 0 ? "card" : undefined)}
                 size={index === 0 ? "large" : "small"}
                 imageSrc={imageSrc}
                 imageAlt={imageAlt}
