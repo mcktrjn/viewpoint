@@ -37,7 +37,7 @@ export const Nav: React.FC<Props> = ({
   const activeSection = sectionsActivity.lastIndexOf(true);
   const [isNavActive, setIsNavActive] = useState(false);
 
-  useEffect(() => window.scrollTo(0, 0), []);
+  if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
 
   useEffect(() => {
     if (hash && !isLoading) {
