@@ -37,6 +37,8 @@ export const Nav: React.FC<Props> = ({
   const activeSection = sectionsActivity.lastIndexOf(true);
   const [isNavActive, setIsNavActive] = useState(false);
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   useEffect(() => {
     if (hash && !isLoading) {
       const index = structure.sections.findIndex((section) => {
@@ -56,8 +58,6 @@ export const Nav: React.FC<Props> = ({
   const body = document.body;
   body.classList.toggle("active", isNavActive);
   if (body.classList.length === 0) body.removeAttribute("class");
-
-  // const componentClassName = cx(styles.nav, { [styles.active]: isNavActive });
 
   return (
     <nav className={cx(styles.nav, { [styles.active]: isNavActive })}>

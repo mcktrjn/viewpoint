@@ -16,10 +16,6 @@ import styles from "./Start.module.scss";
 export const Start = () => {
   const { sectionsRefs, sectionsVisibility, texts } = useContext(Context);
 
-  // const componentClassName = cx(styles.section, {
-  //   [styles.visible]: sectionsVisibility[0],
-  // });
-
   return (
     <Section
       className={cx(styles.section, {
