@@ -44,7 +44,7 @@ export const Start = () => {
             <Button
               className={styles.button}
               text={texts.start.button}
-              onClick={() => scrollToSection(sectionsRefs, 2)}
+              handleClick={() => scrollToSection(sectionsRefs, 2)}
             />
           </Link>
         </div>

@@ -4,14 +4,14 @@ import styles from "./Button.module.scss";
 type Props = {
   className?: string;
   text: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick?: () => void;
 };
 
-export const Button: React.FC<Props> = ({ className, text, onClick }) => {
+export const Button: React.FC<Props> = ({ className, text, handleClick }) => {
   const componentClassName = cx(styles.button, className);
 
   return (
-    <button className={componentClassName} onClick={onClick}>
+    <button className={componentClassName} onClick={handleClick}>
       {text}
     </button>
   );

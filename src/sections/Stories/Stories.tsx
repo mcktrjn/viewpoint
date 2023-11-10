@@ -78,7 +78,7 @@ export const Stories = () => {
             decorationRange,
             paragraph,
             chips,
-          } = getProps(subpage) as Props;
+          }: Props = getProps(subpage);
 
           return (
             <Link

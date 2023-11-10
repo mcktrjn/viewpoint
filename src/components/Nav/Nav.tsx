@@ -133,7 +133,7 @@ export const Nav: React.FC<Props> = ({
       <button
         className={styles.hamburger}
         onClick={() => setIsNavActive(!isNavActive)}
-        aria-label="hamburger"
+        aria-label="Toggle navigation visibility"
       >
         <div className={styles.meat} />
       </button>
